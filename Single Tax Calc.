@@ -1,0 +1,69 @@
+/**
+ * tax calculator
+ *
+ * @author Micki Ross (micki22)
+ * @date   September 22st, 2022
+ *
+ *
+ * Micki Ross
+ */
+
+#include <iostream>
+#include "micki.h"
+#include <iomanip>
+using namespace std;
+
+//tax calculator
+int main()
+{
+    //variable
+    char status;
+    int income, taxable;
+    double tax, taxFinal;
+    cout << "Please enter your filing status\n";
+    cout << "Enter S for Single filers," << endl
+         << "      J for married filing Jointly," << endl
+         << "      F for married Filing separately, or" << endl
+         << "      H for head of household" << endl;
+    cout << "Status: ";
+    cin >> status;
+    cout << "Please enter your income: ";
+    cin >> income;
+
+
+
+    taxable = income - STD_DED;
+
+    if (taxable <= SINGLE10)
+    {
+        tax = ((taxable) * PER10);
+    }
+    else if (taxable <= SINGLE15)
+    {
+        tax = (SINGLE10 * PER10) + ((taxable - SINGLE10) * PER15);
+    }
+    else if (taxable <= SINGLE25)
+    {
+        tax = (SINGLE10 * PER10) + ((SINGLE15 - SINGLE10) * PER15) + ((taxable - SINGLE15) * PER25);
+    }
+    else if (taxable <= SINGLE28)
+    {
+        tax = (SINGLE10 * PER10) + ((SINGLE15 - SINGLE10) * PER15) + ((SINGLE25 - SINGLE15) * PER25) + ((taxable - SINGLE25) * PER28);
+    }
+    else if (taxable <= SINGLE33)
+    {
+        tax = (SINGLE10 * PER10) + ((SINGLE15 - SINGLE10) * PER15) + ((SINGLE25 - SINGLE15) * PER25) + ((SINGLE28 - SINGLE25) * PER28) + ((taxable - SINGLE28) * PER33);
+    }
+    else if (taxable <= SINGLE35)
+    {
+        tax = (SINGLE10 * PER10) + ((SINGLE15 - SINGLE10) * PER15) + ((SINGLE25 - SINGLE15) * PER25) + ((SINGLE28 - SINGLE25) * PER28) + ((SINGLE33 - SINGLE28) * PER33) + ((taxable - SINGLE33) * PER35);
+    }
+    else
+    {
+        tax = (SINGLE10 * PER10) + ((SINGLE15 - SINGLE10) * PER15) + ((SINGLE25 - SINGLE15) * PER25) + ((SINGLE28 - SINGLE25) * PER28) + ((SINGLE33 - SINGLE28) * PER33) + ((SINGLE35 - SINGLE33) * PER35) + ((taxable - SINGLE35) * PER396);
+    }
+    cout << fixed << setprecision(2);
+    cout << "Your tax is $" << tax << ".";
+
+    return 0;
+}
