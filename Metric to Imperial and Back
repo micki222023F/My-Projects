@@ -1,0 +1,231 @@
+/*
+ * 
+ * amateur conversion calculator
+ *
+ * @author Micki Ross (micki22)
+ * @date   September 16th, 2022
+  * Micki Ross
+ */
+#include <iostream>
+#include <iomanip>
+#include "numbers.h"
+using namespace std;
+
+int main()
+{
+    char convType, lenType, imperialUnits;
+    string metricUnits;
+    double len, outLen, outLenMeters, outLenGrams;
+    cout << fixed << setprecision(2);
+    cout << "Enter the type of conversion you wish to perform\n";
+    cout << "Length, Weight, Volume (Enter L, W): ";
+    cin >> convType;
+
+    if (convType != 'L' && convType != 'W' && convType != 'V')
+    {
+        cout << "Conversion type not supported\n\n";
+        return 0;
+    }
+
+    switch (convType)
+    {
+    case 'L':
+        cout << "Convert FROM Metric or Imperial? (M or I) ";
+        cin >> lenType;
+        if (lenType == 'M')
+        {
+            cout << "\nEnter a floating point number of the Metric value, "
+                 << "followed by\nthe units type entered,\n"
+                 << "e.g. '9 cm' or '22.4 M'.\n";
+            cout << "(unit types are mm, cm, or M): ";
+            cin >> len >> metricUnits;
+            cout << "\nEnter the Imperial units to be converted to: \n"
+                 << "(unit types are i, f, or y): ";
+            cin >> imperialUnits;
+
+            cout << endl;
+
+            if (metricUnits[0] == 'c')
+            {
+                outLen = len/100;
+                cout << len << " centimeters is ";
+            }
+            else if (metricUnits[0] == 'm')
+            {
+                outLen = len/1000;
+                cout << len << " millimeters is ";
+            }
+            else if (metricUnits[0] == 'M')
+            {
+                outLen = len;
+                cout << len << " meters is ";
+            }
+            if (imperialUnits == 'i')
+            {
+                cout << outLen * M_TO_I << " inches.\n";
+            }
+            else if (imperialUnits == 'f')
+            {
+                cout << outLen * M_TO_F << " feet.\n";
+            }
+            else if (imperialUnits == 'y')
+            {
+                cout << outLen * M_TO_Y << " yards.\n";
+            }
+            return 0;
+
+        }
+        if (lenType == 'I')
+        {
+            cout << "\nEnter a floating point number of the Imperial value, \n"
+                 << "followed by the length type entered,\n"
+                 << "e.g. '9 i' or '22.4 f'.\n"
+                 << "(length type are i, f, or y): ";
+            cin >> len >> imperialUnits;
+
+            cout << "\nEnter the Metric units to be converted to:\n"
+                 << "(unit types are mm, cm, or M): ";
+            cin >> metricUnits;
+            if (imperialUnits != 'i' && convType != 'f' && convType != 'y')
+
+                cout << endl;
+            if (imperialUnits == 'i')
+            {
+                outLenMeters = len * I_TO_M;
+                cout << len << " inches is ";
+            }
+            else if (imperialUnits == 'f')
+            {
+                outLenMeters = len * F_TO_M;
+                cout << len << " feet is ";
+            }
+            else if (imperialUnits == 'y')
+            {
+                outLenMeters = len * Y_TO_M;
+                cout << len << " yards is ";
+            }
+            if (metricUnits[0] == 'm')
+            {
+                cout << outLenMeters * 1000 << " millimeters.\n";
+            }
+            else if (metricUnits[0] == 'c')
+            {
+                cout << outLenMeters * 100 << " centimeters.\n";
+            }
+            else if (metricUnits[0] == 'M')
+            {
+                cout << outLenMeters << " meters.\n";
+            }
+            return 0;
+        }
+    case 'W':
+        cout << "Convert FROM Metric or Imperial? (M or I) ";
+        cin >> lenType;
+        if (lenType == 'M')
+        {
+            cout << "\nEnter a floating point number of the Metric value,\n"
+                 << "followed by the units type entered,\n"
+                 << "e.g. '9 g' or '22.4 k' .\n";
+            cout << "(unit types are m, g, or k): ";
+            cin >> len >> metricUnits;
+
+            cout << "\nEnter the Imperial units to be converted to: \n"
+                 << "(unit types are o, p, or t): ";
+            cin >> imperialUnits;
+
+            if (metricUnits != "m" && metricUnits != "g" && metricUnits != "k")
+            {
+                cout << "Metric Units entered to convert FROM is not supported.\n";
+                return 0;
+            }
+            if (imperialUnits != 'o' && imperialUnits != 'p' && imperialUnits != 't')
+            {
+                cout << "Imperial Units entered to convert TO is not supported.\n";
+                return 0;
+            }
+
+            cout << endl;
+            if (metricUnits[0] == 'm')
+            {
+                outLen = len/1000; //milligrams to grams
+                cout << len << " milligrams is ";
+            }
+            else if (metricUnits[0] == 'k')
+            {
+                outLen = len*1000;
+                cout << len << " kilograms is ";
+            }
+            else if (metricUnits[0] == 'g')
+            {
+                outLen = len;
+                cout << len << " grams is ";
+            }
+            if (imperialUnits == 'o')
+            {
+                cout << outLen * G_TO_O << " ounces.\n";
+            }
+            else if (imperialUnits == 'p')
+            {
+                cout << outLen * G_TO_P << " pounds.\n";
+            }
+            else if (imperialUnits == 't')
+            {
+                cout << outLen * G_TO_T << " tons.\n";
+            }
+
+            return 0;
+        }
+        if (lenType == 'I')
+        {
+            cout << "\nEnter a floating point number of the Metric value, followed by \n"
+                 << "the units type entered,\n"
+                 << "e.g. '9 o' or '22.4 t' .\n"
+                 << "(unit types are o, p, or t): ";
+            cin >> len >> imperialUnits;
+
+            cout << "\nEnter the Imperial units to be converted to:\n"
+                 << "(unit types are m, g, or k): ";
+
+            cin >> metricUnits;
+             if (metricUnits != "m" && metricUnits != "g" && metricUnits != "k")
+            {
+                cout << "Metric Units entered to convert TO is not supported.\n";
+                return 0;
+            }
+            if (imperialUnits != 'o' && imperialUnits != 'p' && imperialUnits != 't')
+            {
+                cout << "Imperial Units entered to convert FROM is not supported.\n";
+                return 0;
+            }
+            cout << endl;
+            if (imperialUnits == 'o')
+            {
+                outLenGrams = len * O_TO_G;
+                cout << len << " ounces is ";
+            }
+            else if (imperialUnits == 'p')
+            {
+                outLenGrams = len * P_TO_G;
+                cout << len << " pounds is ";
+            }
+            else if (imperialUnits == 't')
+            {
+                outLenGrams = len * T_TO_G;
+                cout << len << " tons is ";
+            }
+            if (metricUnits == "m")
+            {
+                cout << outLenGrams * 1000 << " milligrams.\n";
+            }
+            else if (metricUnits == "g")
+            {
+                cout << outLenGrams << " grams.\n";
+            }
+            else if (metricUnits == "k")
+            {
+                cout << outLenGrams/1000 << " kilograms.\n";
+            }
+        }
+    }
+    return 0;
+}
