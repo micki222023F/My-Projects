@@ -1,0 +1,68 @@
+#include <iostream>
+#include <fstream>
+#include <iomanip>
+#include <cmath>
+using namespace std;
+
+int main()
+{
+    //variables
+    int num, num2, counter = 0, small = 0, large = 10;
+    int const tens = 100000;
+    long total = 0;
+    double Avg, Sum = 0, Var, SD, Range;
+    string strVar, input1;
+    ifstream  myInfile;
+
+    cout << "Enter a file name: ";
+    cin >> input1;
+
+
+    myInfile.open ( input1.c_str() ) ;
+
+    if ( ! myInfile) //
+    {
+        cout << "Error\n\n";
+        return 1;
+    }
+
+//first for loop Mean,  Range, and counter
+    for(int i = 0; i < tens ; i++)
+    {
+        myInfile >> num;
+        total = num + total;
+        if (num < small)
+            small = num;
+        if (num > large)
+            large = num;
+    }
+
+    Avg = total / 100000.0;
+
+    cout << "Values: " << 100000 << endl
+         << "Range: " << small << " to " << large << endl;
+    cout << fixed << setprecision(2);
+    cout << "Mean: " << Avg << endl;
+//close file
+    myInfile.close();
+
+//open file again
+    myInfile.open ( input1.c_str() ) ;
+
+//second for loop for variance and standard deviation
+    for(int num; counter < tens ; counter++)
+    {
+        myInfile >> num;
+        Sum += ((num - Avg)*(num - Avg));
+    }
+
+    Var = Sum / 100000.0;
+    SD = sqrt(Var);
+
+    cout << fixed << setprecision(2);
+
+    cout << "Variance: " << Var << endl
+         << "Standard deviation: " << SD << endl;
+
+    return 0;
+}
