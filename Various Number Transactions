@@ -1,0 +1,130 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+//2.
+    int num, four = 0, five, many, nine,j, eleven, sent1, twelve, odd, val, sent;
+    double num1, Total, six;
+
+    cout << "#2:\n";
+
+    for (num = 1; num < 11; num ++)
+        cout << num << endl;
+
+    cout << "#3:\n";
+
+//3.
+    for (num = 0; num < 101; num += 2)
+        cout << num << endl;
+
+//4.
+    cout << "#4:" << endl;
+    cout << "Input a Number to print up to: ";
+    cin >> four;
+    for (int i = 0; i <= four ;i++)
+    {
+        cout << i << endl;
+    }
+        //cout << i << endl;
+
+//5.
+    cout << "#5:\n";
+    cout << "How many numbers to add up: ";
+    cin >> many;
+    num1 = 0;
+    Total = 0;
+    for (; many != num1; num1++)
+    {
+        cin >> val;
+        Total = val + Total;
+    }
+    cout << "total5: " << Total <<endl;
+
+//6.
+    cout << "#6:\nEnter positive numbers to add up until a negative number is entered: \n";
+    cin >> six;
+    Total = 0;
+    val = 0;
+    while (six > -1)
+    {
+        Total = Total + six;
+        cin >> six;
+    }
+    cout << "total6: " << Total << endl;
+
+//7.
+    cout << "#7:\n";
+    cout << "Input a Sentinel Number: ";
+    cin >> sent >> sent1;
+    Total = 0;
+    val = 0;
+    while (sent != sent1)
+    {
+        Total = Total + sent1;
+        cin >> sent1;
+    }
+    cout << "total7: " << Total;
+
+//8.
+    cout << "\n#8:\n";
+    for(int j = 0; j < 5 ; j++)
+        cout << "*\n";
+//9.
+    cout << endl << "#9:\n";
+    for(int j = 0 ; j < 5 ; j++)
+        cout << "*";
+
+//10.
+    cout << endl << "\n#10:\n";
+    cout << "Input a Number: ";
+    cin >> nine;
+    for (int j = 0; j < nine; j++)
+        cout << "*";
+
+//11.
+    cout << endl << "\n#11:\n";
+    cout << "Input a Number: ";
+    cin >> eleven;
+    for (int i = 2; i <= eleven + 1; i++)
+    {
+        for (int j = 1; j < i ; j++)
+            cout << "*";
+        cout << endl;
+    }
+//12.
+    cout << endl << "\n#12:\n";
+    cout << "Input a Number: ";
+    cin >> twelve;
+    for (int i = twelve; i > 0; i--)
+    {
+        for (int j = 1; j <= i ; j++)
+            cout << "*";
+        cout << endl;
+    }
+//13.
+    cout << endl << "\n#13:\n";
+    cout << "Input an ODD Number: ";
+    cin >> odd;
+    for (int i = 0; i <= odd/2+ 1; i+= 1)
+    {
+        for (int j = 0; j < i*2+1 ; j++)
+            cout << "*";
+        cout << endl;
+    }
+//14.
+    cout << endl << "#14:\n";
+    odd = 0;
+    cout << "Input an ODD Number: ";
+    cin >> odd;
+    for (int i = odd - 1; i >= 0; i -= 2)
+    {
+        for (int j = 0; j <= i ; j++)
+            cout << "*";
+        cout << endl;
+    }
+
+    return 0;
+
+}
